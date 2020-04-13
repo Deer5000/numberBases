@@ -1,13 +1,14 @@
 #!python
 
 import string
-# Hint: Use these string constants to encode/decode hexadecimal digits and more
-# string.digits is '0123456789'
-# string.hexdigits is '0123456789abcdefABCDEF'
-# string.ascii_lowercase is 'abcdefghijklmnopqrstuvwxyz'
-# string.ascii_uppercase is 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-# string.ascii_letters is ascii_lowercase + ascii_uppercase
-# string.printable is digits + ascii_letters + punctuation + whitespace
+
+def decode_any
+    DIGIT = 9
+    try:
+        return int(digit)
+    except:
+        return string.ascii_lowercase.index(digit) + DIGIT +1 # to offset array index
+
 
 
 def decode(digits, base):
@@ -23,7 +24,15 @@ def decode(digits, base):
     # ...
     # TODO: Decode digits from any base (2 up to 36)
     # ...
+    result = 0
+    power = 0
+    for digit in digits[::-1]:
+        result += decode_any(digit) * (base ** power)
+        power += 1
 
+    return result
+
+    
 
 def encode(number, base):
     """Encode given number in base 10 to digits in given base.
