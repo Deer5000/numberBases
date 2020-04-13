@@ -2,12 +2,20 @@
 
 import string
 
-def decode_any
+def decode_any(digit):
     DIGIT = 9
     try:
         return int(digit)
     except:
         return string.ascii_lowercase.index(digit) + DIGIT +1 # to offset array index
+
+def encode_any(num):
+    DIGIT = 9
+    if num <= DIGIT:
+        return num
+    if num >DIGIT:
+        index = (num - DIGIT) -1
+        return string.ascii_lowercase[index]
 
 
 
@@ -32,7 +40,7 @@ def decode(digits, base):
 
     return result
 
-    
+
 
 def encode(number, base):
     """Encode given number in base 10 to digits in given base.
@@ -50,6 +58,12 @@ def encode(number, base):
     # TODO: Encode number in any base (2 up to 36)
     # ...
 
+    result = ""
+    while number > 0:
+        number, rem = divmod(number, base)
+        result += str(encode_any(rem))
+
+    return result[::-1]
 
 def convert(digits, base1, base2):
     """Convert given digits in base1 to digits in base2.
@@ -68,6 +82,10 @@ def convert(digits, base1, base2):
     # ...
     # TODO: Convert digits from any base to any base (2 up to 36)
     # ...
+    decoded_result = decode(digits,base1)
+    encoded_result = encode(decoded_result,base2)
+    return encoded_result
+
 
 
 def main():
